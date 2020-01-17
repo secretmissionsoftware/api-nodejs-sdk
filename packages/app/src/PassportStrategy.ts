@@ -4,10 +4,15 @@ export const AUTHORIZATION_URL =
 	'https://my.freshbooks.com/service/auth/oauth/authorize'
 export const TOKEN_URL = 'https://api.freshbooks.com/auth/oauth/token'
 
-export interface SessionUser {
+export interface OAuthSession {
 	id: string
 	token: string
 	refreshToken: string
+}
+
+export interface SessionUser {
+	freshbooks: OAuthSession
+	squarespace?: OAuthSession
 }
 
 export default class FreshbooksStrategy extends OAuth2Strategy {

@@ -17,9 +17,11 @@ const defaultVerifyFn = async (
 		const { data } = await client.users.me()
 		if (data !== null && data !== undefined) {
 			const user: SessionUser = {
-				id: data.id,
-				token,
-				refreshToken,
+				freshbooks: {
+					id: data.id,
+					token,
+					refreshToken,
+				},
 			}
 			done(null, user)
 		}
@@ -38,14 +40,14 @@ const defaultSerializeUserFn = (
 	user: SessionUser,
 	done: (err: any, id?: string) => void
 ): void => {
-	done(null, user.id)
+	done(null, user.freshbooks.id)
 }
 
 const defaultDeserializeUserFn = (
 	id: string,
 	done: (err: any, user?: SessionUser) => void
 ): void => {
-	done(null, { id, token: '', refreshToken: '' })
+	done(null, { freshbooks: { id, token: '', refreshToken: '' } })
 }
 
 /**
