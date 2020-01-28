@@ -434,9 +434,7 @@ describe('@freshbooks/api', () => {
 					`/accounting/account/${ACCOUNT_ID}/invoices/invoices`,
 					mockRequest
 				)
-				.replyOnce(config => {
-					return [200, mockResponse]
-				})
+				.replyOnce(200, mockResponse)
 
 			const invoice = buildInvoice()
 			const { data } = await client.invoices.create(invoice, ACCOUNT_ID)
