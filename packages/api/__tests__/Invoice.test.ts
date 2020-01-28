@@ -175,6 +175,7 @@ const buildMockRequest = (invoiceProperties: any = {}): any => ({
 		city: 'Toronto',
 		code: 'M5V0P3',
 		country: 'Canada',
+		create_date: '2019-11-14',
 		currency_code: 'USD',
 		customerid: 217572,
 		deposit_amount: null,
@@ -433,7 +434,9 @@ describe('@freshbooks/api', () => {
 					`/accounting/account/${ACCOUNT_ID}/invoices/invoices`,
 					mockRequest
 				)
-				.replyOnce(200, mockResponse)
+				.replyOnce(config => {
+					return [200, mockResponse]
+				})
 
 			const invoice = buildInvoice()
 			const { data } = await client.invoices.create(invoice, ACCOUNT_ID)
