@@ -104,19 +104,21 @@ export default class APIClient {
 				ok: true,
 				data: response.data,
 			}
-		} catch ({
-			response: {
-				status,
-				statusText,
-				data: { code, message, errors },
-			},
-		}) {
-			throw new APIClientError(
-				name || '',
-				message || statusText,
-				(code && code.toString()) || (status && status.toString()),
-				errors
-			)
+		} catch (err) {
+			if (err.response) {
+				const {
+					response: { status, statusText, data: errData },
+				} = err
+
+				throw new APIClientError(
+					name || '',
+					(errData && errData.message) || statusText,
+					(errData && errData.code && errData.code.toString()) ||
+						(status && status.toString()),
+					errData && errData.errors
+				)
+			}
+			throw err
 		}
 	}
 
