@@ -228,10 +228,16 @@ export default class APIClient {
 		/**
 		 * Get single invoice
 		 */
-		single: (accountId: string, invoiceId: string): Promise<Result<Invoice>> =>
+		single: (
+			accountId: string,
+			invoiceId: string,
+			queryBuilders?: QueryBuilderType[]
+		): Promise<Result<Invoice>> =>
 			this.call(
 				'GET',
-				`/accounting/account/${accountId}/invoices/invoices/${invoiceId}`,
+				`/accounting/account/${accountId}/invoices/invoices/${invoiceId}${joinQueries(
+					queryBuilders
+				)}`,
 				{
 					transformResponse: transformInvoiceResponse,
 				},
