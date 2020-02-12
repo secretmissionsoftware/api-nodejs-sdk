@@ -319,7 +319,8 @@ export function transformInvoiceRequest(invoice: Invoice): string {
 			country: invoice.country,
 			currency_code: invoice.currencyCode,
 			customerid: invoice.customerId,
-			create_date: transformDateRequest(invoice.createDate),
+			create_date:
+				invoice.createDate && transformDateRequest(invoice.createDate),
 			deposit_amount: invoice.depositAmount,
 			deposit_percentage: invoice.depositPercentage,
 			discount_description: invoice.discountDescription,
