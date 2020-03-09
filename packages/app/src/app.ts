@@ -7,6 +7,7 @@ import { Client } from '@freshbooks/api'
 import FreshbooksStrategy, { SessionUser } from './PassportStrategy'
 
 const defaultVerifyFn = async (
+	req: Express.Request,
 	token: string,
 	refreshToken: string,
 	profile: object,
@@ -91,7 +92,7 @@ export default function(
 }
 
 export interface Options {
-	verify?: OAuth2Strategy.VerifyFunction
+	verify?: OAuth2Strategy.VerifyFunctionWithRequest
 	sessionOptions?: SessionOptions
 	serializeUser?: <T extends SessionUser>(
 		user: T,

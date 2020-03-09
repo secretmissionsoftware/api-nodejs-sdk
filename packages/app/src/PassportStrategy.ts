@@ -19,7 +19,7 @@ export default class FreshbooksStrategy extends OAuth2Strategy {
 		clientId: string,
 		clientSecret: string,
 		callbackURL: string,
-		verify: OAuth2Strategy.VerifyFunction
+		verify: OAuth2Strategy.VerifyFunctionWithRequest
 	) {
 		super(
 			{
@@ -28,6 +28,7 @@ export default class FreshbooksStrategy extends OAuth2Strategy {
 				clientID: clientId,
 				clientSecret,
 				callbackURL,
+				passReqToCallback: true,
 			},
 			verify
 		)
