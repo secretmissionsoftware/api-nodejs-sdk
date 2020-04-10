@@ -8,9 +8,9 @@ import { Nullable } from './helpers'
 /* eslint-disable @typescript-eslint/camelcase */
 
 export enum PaymentType {
-	Check = 'Check',
-	Credit = 'Credit',
-	Cash = 'Cash',
+	Check = 'check',
+	Credit = 'credit card',
+	Cash = 'cash',
 }
 
 export default interface Payment {
