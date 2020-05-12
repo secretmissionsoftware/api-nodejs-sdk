@@ -16,7 +16,7 @@ export interface MoneyResponse {
  */
 export function transformMoneyResponse({ amount, code }: MoneyResponse): Money {
 	return {
-		amount: Number(amount),
+		amount: parseFloat(amount),
 		code,
 	}
 }
