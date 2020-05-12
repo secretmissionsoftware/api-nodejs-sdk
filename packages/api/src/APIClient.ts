@@ -62,7 +62,7 @@ export default class APIClient {
 	 * @param logger Custom logger
 	 */
 	constructor(token: string, options?: Options, logger = _logger) {
-		const { apiUrl = API_URL, retryOptions } = options || {}
+		const { apiUrl = API_URL, retryOptions, userAgent } = options || {}
 
 		this.token = token
 		this.apiUrl = apiUrl
@@ -74,6 +74,7 @@ export default class APIClient {
 				Authorization: `Bearer ${token}`,
 				'Api-Version': 'alpha',
 				'Content-Type': 'application/json',
+				'User-Agent': userAgent,
 			},
 		})
 
@@ -508,6 +509,7 @@ export default class APIClient {
 export interface Options {
 	apiUrl?: string
 	retryOptions?: IAxiosRetryConfig
+	userAgent?: string
 }
 
 export interface Result<T> {
